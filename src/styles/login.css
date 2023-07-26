@@ -1,0 +1,39 @@
+
+.login{
+    background-color: #212121;
+    color: #ffffff;
+    width: 90vw;
+}
+  
+.form-box {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #a5b4fc;
+}
+  
+input {
+    width: 100%;
+    border: 1px solid #cccccc;
+    padding: 10px;
+    border-radius: 5px;
+    color: #000000;
+}
+  
+button {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #cccccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.form-box h1 {
+    color: #00a39d;
+}
+  
+.form-box label {
+    color: #00a39d;
+}
+
