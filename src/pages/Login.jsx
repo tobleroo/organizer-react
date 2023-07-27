@@ -8,18 +8,28 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [token, setToken] = useState(null);
 
-  const handleLogin = async () => {
+  const handleLogin = async (event) => {
+    event.preventDefault();
     console.log("login");
     const { data } = await axios.post("https://localhost:7117/api/Auth/login", {
       username,
       password,
+    }, {
+      headers: {
+        "content-type": "application/json",
+      },
     });
 
     if (data.success) {
-        setToken(data.token);
+        console.log("success");
       } else {
+        console.log("error");
         alert(data.error);
     }
+  };
+
+  const handleLogout = () => {
+    console.log("logout");
   };
 
   return (
