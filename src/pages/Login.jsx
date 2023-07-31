@@ -11,21 +11,44 @@ const Login = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
     console.log("login");
-    const { data } = await axios.post("https://localhost:7117/api/Auth/login", {
-      username,
-      password,
-    }, {
-      headers: {
-        "content-type": "application/json",
-      },
-    });
-
-    if (data.success) {
-        console.log("success");
+    try {
+      const { data } = await axios.post(
+        "https://localhost:7117/api/Auth/login",
+        {
+          username,
+          password,
+        },
+        {
+          headers: {
+            "content-type": "application/json",
+          },
+        }
+      );
+  
+      console.log(data.status);
+  
+      if (data.success) {
+        console.log("success, jwt saved to localstorage");
+        localStorage.setItem("token", data.token); // Assuming the token is returned as 'token' property in the response
       } else {
-        console.log("error");
-        alert(data.error);
+        console.log(data.message); // Assuming the error message is returned as 'message' property in the response
+      }
+    } catch (error) {
+      // Handle error here
+      if (error.response) {
+        // The request was made, but the server responded with an error status
+        console.log("Error status:", error.response.status);
+        console.log("Error data:", error.response.data);
+        // >-----  lägg in att de kommer upp en p tagg med error message i login!!! ------<
+      } else if (error.request) {
+        // The request was made, but no response was received
+        console.log("No response received:", error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log("Error:", error.message);
+      }
     }
+  
   };
 
   const handleLogout = () => {
