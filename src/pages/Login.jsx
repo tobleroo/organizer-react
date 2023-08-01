@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import {isTokenExpired} from "../Api/OrganizerAuth";
 
 import "../styles/login.css";
 
@@ -9,10 +10,11 @@ const Login = () => {
   const [token, setToken] = useState(null);
 
   const handleLogin = async (event) => {
+
     event.preventDefault();
     console.log("login");
     try {
-      const { data } = await axios.post(
+      const response = await axios.post(
         "https://localhost:7117/api/Auth/login",
         {
           username,
@@ -25,13 +27,13 @@ const Login = () => {
         }
       );
   
-      console.log(data.status);
+      console.log("token -> " + response);
   
-      if (data.success) {
+      if (response.status === 200) {
         console.log("success, jwt saved to localstorage");
-        localStorage.setItem("token", data.token); // Assuming the token is returned as 'token' property in the response
+        localStorage.setItem("token", response.data); // Assuming the token is returned as 'token' property in the response
       } else {
-        console.log(data.message); // Assuming the error message is returned as 'message' property in the response
+        console.log(response.data.message); // Assuming the error message is returned as 'message' property in the response
       }
     } catch (error) {
       // Handle error here
@@ -40,6 +42,9 @@ const Login = () => {
         console.log("Error status:", error.response.status);
         console.log("Error data:", error.response.data);
         // >-----  lägg in att de kommer upp en p tagg med error message i login!!! ------<
+        const errorMessageDiv = document.getElementById("error-message-box");
+        errorMessageDiv.innerHTML = `<p>${error.response.data}</p>`;
+
       } else if (error.request) {
         // The request was made, but no response was received
         console.log("No response received:", error.request);
@@ -55,10 +60,18 @@ const Login = () => {
     console.log("logout");
   };
 
+  const test = () => {
+    console.log(isTokenExpired());
+  };
+
+
   return (
     <div className="login">
       <div className="form-box">
         <h1>Login</h1>
+        <div id="error-message-box">
+
+        </div>
         <form>
           <label htmlFor="username">username</label>
           <input
@@ -77,6 +90,7 @@ const Login = () => {
             id="password"
           />
           <button type="submit" onClick={handleLogin}>login</button>
+          <button type="button" onClick={test}>demo</button>
         </form>
       </div>
     </div>
