@@ -8,7 +8,7 @@ const token = 'eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNob
 export function getCalendar() {
     return axios.get('https://localhost:7117/calendar', {
         headers: {
-        Authorization: 'Bearer ' + getJwtToken()+"t",
+        Authorization: 'Bearer ' + getJwtToken(),
         }
     });
 };
