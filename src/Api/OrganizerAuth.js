@@ -1,5 +1,6 @@
 import axios from "axios";
 import jwtDecode from 'jwt-decode';
+import Cookies from 'js-cookie';
 
 //write other auth functions here
 // export const organizerLogin = async (email, password) => {

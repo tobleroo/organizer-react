@@ -27,7 +27,7 @@ const Login = () => {
         }
       );
   
-      console.log("token -> " + response);
+      console.log("token -> " + response.data);
   
       if (response.status === 200) {
         console.log("success, jwt saved to localstorage");

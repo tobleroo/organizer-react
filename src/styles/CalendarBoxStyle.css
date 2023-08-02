@@ -1,0 +1,40 @@
+
+
+.calendarBox{
+    display: flex;
+    flex-direction: column;
+    max-width: 40rem;
+}
+
+.weekdays-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #a5b4fc;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.calendarBox_days{
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-start;
+    background-color: #a5b4fc;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    flex-wrap: wrap;
+}
+
+.calendarBox_days p{
+    margin: .3rem;
+    padding: .3rem;
+    font-size: xx-large;
+}
+
+.calendarBox_days p:hover{
+    cursor: pointer;
+    background-color: #ffffff;
+    color: #000000;
+}
