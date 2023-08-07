@@ -31,7 +31,7 @@ function Calendar() {
         <div className="calendar">
             <CalendarBox/>
         </div>
-        <button type="button" onClick={getCalendarData}>try get data</button>
+        {/* <button type="button" onClick={getCalendarData}>try get data</button> */}
         </div>
     );
 }
