@@ -1,6 +1,10 @@
 import React from "react";
 import {getCalendar} from "../Api/OrganizerCalendar";
 import CalendarBox from "../components/calendarComponents/calendarBox";
+import SelectedDay from "../components/calendarComponents/SelectedDay";
+
+//import css file
+import "../styles/Calendar.css";
 
 const getCalendarData = async () => {
     try {
@@ -22,16 +26,22 @@ const getCalendarData = async () => {
 
 function Calendar() {
     return (
-        <div>
-        <h1>Calendar</h1>
-        <div className="error-box">
+        <div className="calendar-page">
+            <h1>Calendar</h1>
+            <div className="error-box">
 
-        </div>
+            </div>
 
-        <div className="calendar">
-            <CalendarBox/>
-        </div>
-        {/* <button type="button" onClick={getCalendarData}>try get data</button> */}
+            <div className="all-calendar">
+                <div className="selected-date-calendar">
+                    <SelectedDay/>
+                </div>
+
+                <div className="calendar">
+                    <CalendarBox/>
+                </div>
+            </div>
+            {/* <button type="button" onClick={getCalendarData}>try get data</button> */}
         </div>
     );
 }

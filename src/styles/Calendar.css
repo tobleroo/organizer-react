@@ -1,0 +1,11 @@
+
+
+.calendar-page{
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.all-calendar{
+    display: flex;
+    flex-flow: row nowrap;
+}
