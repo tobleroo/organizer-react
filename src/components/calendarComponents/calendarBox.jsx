@@ -51,8 +51,32 @@ function generateDummyData() {
             {
                 "date": "2023-08-07",
                 "dayOfWeek": "Monday",
-                "tasks": [],
-                "events": []
+                "Tasks": [
+                    {
+                        "_id": 0,
+                        "Title": "clean house",
+                        "IsCompleted": false,
+                        "timeToDoMinutes": 30
+                    },
+                    {
+                        "_id": 0,
+                        "Title": "clean vacuum",
+                        "IsCompleted": false,
+                        "timeToDoMinutes": 20
+                    }
+                ],
+                "Events": [
+                    {
+                        "_id": 0,
+                        "Title": "see the show",
+                        "Description": "once upon a time a show"
+                    },
+                    {
+                        "_id": 0,
+                        "Title": "go to the party",
+                        "Description": "once upon a time a show"
+                    }
+                ]
             },
             {
                 "date": "2023-08-08",
