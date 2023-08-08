@@ -5,4 +5,75 @@
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
+    
+}
+
+.task-box{
+    border: solid black 1px;
+    padding: 10px 0;
+}
+
+.date-info-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.details-box h4{
+    padding: 0 3rem;
+}
+
+.details-box, .active-tasks, .active-events{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    justify-content:space-evenly;
+}
+
+.active-tasks, .active-events > h4,
+.active-tasks > p,
+.active-tasks > button {
+  border: solid black 1px;
+  padding: 0;
+  margin: 0;
+}
+
+.active-tasks, .active-events{
+    border: solid blue 2px;
+    padding: 0;
+    margin: 0;
+}
+
+.type-add-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.type-Btn{
+    width: 50%;
+}
+
+.add-box{
+    margin: 2rem 0;
+}
+
+.selected-type-box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem o;
+}
+
+.add-task, .add-event{
+    width: 80%;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.add-task{
+    display: none;
 }
