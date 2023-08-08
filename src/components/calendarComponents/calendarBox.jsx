@@ -3,202 +3,203 @@ import { useState, useEffect } from "react";
 
 import "../../styles/CalendarBoxStyle.css";
 
-function generateDummyData() {
-    return {
-        "data": [
-            {
-                "date": "2023-07-31",
-                "dayOfWeek": "Monday",
-                "tasks": [],
-                "events": []
-            },
-            {
-                "date": "2023-08-01",
-                "dayOfWeek": "Tuesday",
-                "tasks": [],
-                "events": []
-            },
-            {
-                "date": "2023-08-02",
-                "dayOfWeek": "Wednesday",
-                "tasks": [],
-                "events": []
-            },
-            {
-                "date": "2023-08-03",
-                "dayOfWeek": "Thursday",
-                "tasks": [],
-                "events": []
-            },
-            {
-                "date": "2023-08-04",
-                "dayOfWeek": "Friday",
-                "tasks": [],
-                "events": []
-            },
-            {
-                "date": "2023-08-05",
-                "dayOfWeek": "Saturday",
-                "tasks": [],
-                "events": []
-            },
-            {
-                "date": "2023-08-06",
-                "dayOfWeek": "Sunday",
-                "tasks": [],
-                "events": []
-            },
-            {
-                "date": "2023-08-07",
-                "dayOfWeek": "Monday",
-                "Tasks": [
-                    {
-                        "_id": 0,
-                        "Title": "clean house",
-                        "IsCompleted": false,
-                        "timeToDoMinutes": 30
-                    },
-                    {
-                        "_id": 0,
-                        "Title": "clean vacuum",
-                        "IsCompleted": false,
-                        "timeToDoMinutes": 20
-                    }
-                ],
-                "Events": [
-                    {
-                        "_id": 0,
-                        "Title": "see the show",
-                        "Description": "once upon a time a show"
-                    },
-                    {
-                        "_id": 0,
-                        "Title": "go to the party",
-                        "Description": "once upon a time a show"
-                    }
-                ]
-            },
-            {
-                "date": "2023-08-08",
-                "dayOfWeek": "Tuesday",
-                "tasks": [],
-                "events": []
-            },
-            {
-                "date": "2023-08-09",
-                "dayOfWeek": "Wednesday",
-                "tasks": [],
-                "events": []
-            },
-            {
-                "date": "2023-08-10",
-                "dayOfWeek": "Thursday",
-                "tasks": [],
-                "events": []
-            },
-            {
-                "date": "2023-08-11",
-                "dayOfWeek": "Friday",
-                "tasks": [],
-                "events": []
-            },
-            {
-                "date": "2023-08-12",
-                "dayOfWeek": "Saturday",
-                "tasks": [],
-                "events": []
-            },
-            {
-                "date": "2023-08-13",
-                "dayOfWeek": "Sunday",
-                "tasks": [],
-                "events": []
-            },
-            {
-                "date": "2023-08-14",
-                "dayOfWeek": "Monday",
-                "tasks": [],
-                "events": []
-            },
-            {
-                "date": "2023-08-15",
-                "dayOfWeek": "Tuesday",
-                "tasks": [],
-                "events": []
-            },
-            {
-                "date": "2023-08-16",
-                "dayOfWeek": "Wednesday",
-                "tasks": [],
-                "events": []
-            },
-            {
-                "date": "2023-08-17",
-                "dayOfWeek": "Thursday",
-                "tasks": [],
-                "events": []
-            },
-            {
-                "date": "2023-08-18",
-                "dayOfWeek": "Friday",
-                "tasks": [],
-                "events": []
-            },
-            {
-                "date": "2023-09-14",
-                "dayOfWeek": "Monday",
-                "tasks": [],
-                "events": []
-            },
-            {
-                "date": "2023-09-15",
-                "dayOfWeek": "Tuesday",
-                "tasks": [],
-                "events": []
-            },
-            {
-                "date": "2023-09-16",
-                "dayOfWeek": "Wednesday",
-                "tasks": [],
-                "events": []
-            },
-            {
-                "date": "2023-09-17",
-                "dayOfWeek": "Thursday",
-                "tasks": [],
-                "events": []
-            },
-            {
-                "date": "2023-09-18",
-                "dayOfWeek": "Friday",
-                "tasks": [],
-                "events": []
-            }
-        ]
-    };
-}
+// function generateDummyData() {
+//     return {
+//         "data": [
+//             {
+//                 "date": "2023-07-31",
+//                 "dayOfWeek": "Monday",
+//                 "tasks": [],
+//                 "events": []
+//             },
+//             {
+//                 "date": "2023-08-01",
+//                 "dayOfWeek": "Tuesday",
+//                 "tasks": [],
+//                 "events": []
+//             },
+//             {
+//                 "date": "2023-08-02",
+//                 "dayOfWeek": "Wednesday",
+//                 "tasks": [],
+//                 "events": []
+//             },
+//             {
+//                 "date": "2023-08-03",
+//                 "dayOfWeek": "Thursday",
+//                 "tasks": [],
+//                 "events": []
+//             },
+//             {
+//                 "date": "2023-08-04",
+//                 "dayOfWeek": "Friday",
+//                 "tasks": [],
+//                 "events": []
+//             },
+//             {
+//                 "date": "2023-08-05",
+//                 "dayOfWeek": "Saturday",
+//                 "tasks": [],
+//                 "events": []
+//             },
+//             {
+//                 "date": "2023-08-06",
+//                 "dayOfWeek": "Sunday",
+//                 "tasks": [],
+//                 "events": []
+//             },
+//             {
+//                 "date": "2023-08-07",
+//                 "dayOfWeek": "Monday",
+//                 "Tasks": [
+//                     {
+//                         "_id": 0,
+//                         "Title": "clean house",
+//                         "IsCompleted": false,
+//                         "timeToDoMinutes": 30
+//                     },
+//                     {
+//                         "_id": 0,
+//                         "Title": "clean vacuum",
+//                         "IsCompleted": false,
+//                         "timeToDoMinutes": 20
+//                     }
+//                 ],
+//                 "Events": [
+//                     {
+//                         "_id": 0,
+//                         "Title": "see the show",
+//                         "Description": "once upon a time a show"
+//                     },
+//                     {
+//                         "_id": 0,
+//                         "Title": "go to the party",
+//                         "Description": "once upon a time a show"
+//                     }
+//                 ]
+//             },
+//             {
+//                 "date": "2023-08-08",
+//                 "dayOfWeek": "Tuesday",
+//                 "tasks": [],
+//                 "events": []
+//             },
+//             {
+//                 "date": "2023-08-09",
+//                 "dayOfWeek": "Wednesday",
+//                 "tasks": [],
+//                 "events": []
+//             },
+//             {
+//                 "date": "2023-08-10",
+//                 "dayOfWeek": "Thursday",
+//                 "tasks": [],
+//                 "events": []
+//             },
+//             {
+//                 "date": "2023-08-11",
+//                 "dayOfWeek": "Friday",
+//                 "tasks": [],
+//                 "events": []
+//             },
+//             {
+//                 "date": "2023-08-12",
+//                 "dayOfWeek": "Saturday",
+//                 "tasks": [],
+//                 "events": []
+//             },
+//             {
+//                 "date": "2023-08-13",
+//                 "dayOfWeek": "Sunday",
+//                 "tasks": [],
+//                 "events": []
+//             },
+//             {
+//                 "date": "2023-08-14",
+//                 "dayOfWeek": "Monday",
+//                 "tasks": [],
+//                 "events": []
+//             },
+//             {
+//                 "date": "2023-08-15",
+//                 "dayOfWeek": "Tuesday",
+//                 "tasks": [],
+//                 "events": []
+//             },
+//             {
+//                 "date": "2023-08-16",
+//                 "dayOfWeek": "Wednesday",
+//                 "tasks": [],
+//                 "events": []
+//             },
+//             {
+//                 "date": "2023-08-17",
+//                 "dayOfWeek": "Thursday",
+//                 "tasks": [],
+//                 "events": []
+//             },
+//             {
+//                 "date": "2023-08-18",
+//                 "dayOfWeek": "Friday",
+//                 "tasks": [],
+//                 "events": []
+//             },
+//             {
+//                 "date": "2023-09-14",
+//                 "dayOfWeek": "Monday",
+//                 "tasks": [],
+//                 "events": []
+//             },
+//             {
+//                 "date": "2023-09-15",
+//                 "dayOfWeek": "Tuesday",
+//                 "tasks": [],
+//                 "events": []
+//             },
+//             {
+//                 "date": "2023-09-16",
+//                 "dayOfWeek": "Wednesday",
+//                 "tasks": [],
+//                 "events": []
+//             },
+//             {
+//                 "date": "2023-09-17",
+//                 "dayOfWeek": "Thursday",
+//                 "tasks": [],
+//                 "events": []
+//             },
+//             {
+//                 "date": "2023-09-18",
+//                 "dayOfWeek": "Friday",
+//                 "tasks": [],
+//                 "events": []
+//             }
+//         ]
+//     };
+// }
 
-function CalendarBox() {
+function CalendarBox( {calendarData, setSelectedDate}) {
+
+
     
-    const [calendarData, setCalendarData] = useState(generateDummyData());
     const [currentMonthSelected, setCurrentMonthSelected] = useState("");
     const [currentYearSelected, setCurrentYearSelected] = useState("");
     const [currentMonthName, setCurrentMonthName] = useState(getMonthName(getCurrentMonth()));
     
     useEffect(() => {
         // fetch data from backend
-
         setCurrentMonthSelected(getCurrentMonth());
         setCurrentYearSelected(getCurrentYear());
         setCurrentMonthName(getMonthName(getCurrentMonth()));
         // this is demo for fetching data from backend
+
         createCalendar();
         
     }, []);
 
     useEffect(() => {
         createCalendar();
-    }, [currentMonthSelected]);
+    }, [currentMonthSelected, calendarData]);
 
     function compareToTodaysDate(calendarDate){
         const today = new Date();
@@ -290,6 +291,10 @@ function CalendarBox() {
         }
     }
 
+    function selectedDateToCard(chosenDate){
+        setSelectedDate(chosenDate);
+    }
+
     //big algorithm to create calendar
     function createCalendar(){
 
@@ -302,14 +307,15 @@ function CalendarBox() {
             const monthName = document.getElementById('monthName');
             monthName.innerHTML = currentMonthName + " " + currentYearSelected;
             
-            for(let i = 0; i < calendarData.data.length; i++){
+            for(let i = 0; i < calendarData.length; i++){
 
-                if(CheckCurrentMonth(calendarData.data[i].date, currentMonthSelected)){
+                if(CheckCurrentMonth(calendarData[i].date, currentMonthSelected)){
                     const date = document.createElement('p');
                     date.className = "dateNumber";
-                    date.innerText = calendarData.data[i].date.substring(8,10);
-                    if(compareToTodaysDate(calendarData.data[i].date)){
+                    date.innerText = calendarData[i].date.substring(8,10);
+                    if(compareToTodaysDate(calendarData[i].date)){
                         date.style.backgroundColor = "red";
+                        selectedDateToCard(calendarData[i]);
                     }
                     calendarbox.appendChild(date);
                 }

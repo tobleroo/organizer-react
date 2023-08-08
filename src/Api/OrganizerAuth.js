@@ -19,12 +19,13 @@ export const isTokenExpired = () => {
     
   const token = localStorage.getItem("token");
   if (!token) {
-    //console.log("Token not found");
+    console.log("Token not found");
     // Token not found, consider it as expired
-    return true;
+    return false;
   }
 
   try {
+    console.log("Token found");
     const decodedToken = jwtDecode(token);
     const currentTime = Date.now() / 1000; // Convert milliseconds to seconds
 
@@ -34,9 +35,9 @@ export const isTokenExpired = () => {
     // Compare the token's expiration time with the calculated expiration time
     return decodedToken.exp < expirationTime;
   } catch (error) {
-    //console.log("Invalid token");
+    console.log("Token invalid");
     // Token is invalid or malformed, consider it as expired
-    return true;
+    return false;
   }
 };
 

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import {isTokenExpired} from "../Api/OrganizerAuth";
 
@@ -9,8 +10,9 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [token, setToken] = useState(null);
 
-  const handleLogin = async (event) => {
+  const navigate = useNavigate();
 
+  const handleLogin = async (event) => {
     event.preventDefault();
     console.log("login");
     try {
@@ -32,6 +34,8 @@ const Login = () => {
       if (response.status === 200) {
         console.log("success, jwt saved to localstorage");
         localStorage.setItem("token", response.data); // Assuming the token is returned as 'token' property in the response
+        navigate("/calendar");
+        
       } else {
         console.log(response.data.message); // Assuming the error message is returned as 'message' property in the response
       }
@@ -60,10 +64,6 @@ const Login = () => {
     console.log("logout");
   };
 
-  const test = () => {
-    console.log(isTokenExpired());
-  };
-
 
   return (
     <div className="login">
@@ -90,7 +90,6 @@ const Login = () => {
             id="password"
           />
           <button type="submit" onClick={handleLogin}>login</button>
-          <button type="button" onClick={test}>demo</button>
         </form>
       </div>
     </div>

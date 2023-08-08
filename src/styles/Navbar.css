@@ -12,7 +12,7 @@ nav{
     flex-direction: column;
 }
 
-nav a{
+nav a, button{
     color: white;
     padding: .5rem;
     margin: .3rem;
@@ -20,7 +20,7 @@ nav a{
     font-size: large;
 }
 
-nav a:hover{
+nav a:hover, button:hover{
     background-color: white;
     color: green;
 }
