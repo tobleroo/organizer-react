@@ -13,7 +13,7 @@ import "../styles/Calendar.css";
 function Calendar() {
 
     const [calendarData, setCalendarData] = useState(null);
-    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedDate, setSelectedDate] = useState();
 
     useEffect( () => {
         async function fetchData() {
@@ -25,11 +25,14 @@ function Calendar() {
 
     useEffect(() => {
         if(selectedDate != null){
-            console.log("selectedDate: " + selectedDate.date);
+            console.log(JSON.stringify(selectedDate));
         }
     }, [calendarData,selectedDate]);
 
-    
+    // selectedDate.addEventListener("change", () => {
+    //     setSelectedDate(selectedDate);
+    // });
+
     const getCalendarData = async () => {
         try {
             const response = await getCalendar();

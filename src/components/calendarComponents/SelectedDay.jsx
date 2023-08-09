@@ -3,11 +3,12 @@ import { useState, useEffect } from "react";
 
 import "../../styles/SelectedDay.css";
 
-function SelectedDay({SelectedDate}) {
+function SelectedDay({selectedDate}) {
 
     useEffect(() => {
         printTasks();
-    }, [SelectedDate]);
+        printEvents();
+    }, [selectedDate]);
 
 
 
@@ -16,22 +17,39 @@ function SelectedDay({SelectedDate}) {
         if(inputWanted === "event"){
             document.querySelector(".add-event").style.display = "block";
             document.querySelector(".add-task").style.display = "none";
-            document.querySelector("#eventBtn").style.backgroundColor = "red";
-            document.querySelector("#taskBtn").style.backgroundColor = "white";
+            document.querySelector("#eventBtn").style.backgroundColor = "rgb(241, 96, 12)";
+            document.querySelector("#taskBtn").style.backgroundColor = "black";
         } else if(inputWanted === "task"){
             document.querySelector(".add-event").style.display = "none";
             document.querySelector(".add-task").style.display = "block";
-            document.querySelector("#eventBtn").style.backgroundColor = "white";
-            document.querySelector("#taskBtn").style.backgroundColor = "red";
+            document.querySelector("#eventBtn").style.backgroundColor = "black";
+            document.querySelector("#taskBtn").style.backgroundColor = "rgb(241, 96, 12)";
         }
     }
 
     function addTaskToCalendar(){
+        //create new task object
+        let task = {
+            title: document.querySelector("#addTitleId").value,
+            timeToDoMinutes: document.querySelector("#addTimeId").value,
+            isComplete: false
+        };
 
+        //add task to selectedDate.tasks array
+        selectedDate.tasks.push(task);
+        
     }
 
     function addEventToCalendar(){
+        //create new event object
+        let event = {
+            title: document.querySelector("#addTitleId").value,
+            description: "none",
+            time: document.querySelector("#addClockId").value,
+        };
 
+        //add event to selectedDate.events array
+        selectedDate.events.push(event);
     }
 
     function saveCalendarToServer(){
@@ -40,19 +58,69 @@ function SelectedDay({SelectedDate}) {
 
     function printTasks(){
 
-        if(SelectedDate == null || SelectedDate.tasks.length === 0){
+        if(selectedDate == null || selectedDate.tasks.length === 0){
             //query for actiove-tasks div
             let activeTasks = document.querySelector(".active-tasks");
             activeTasks.innerHTML = "no tasks";
         } else {
             //query for actiove-tasks div
             let activeTasks = document.querySelector(".active-tasks");
+            activeTasks.innerHTML = "";
             //loop trough selectedDate.tasks array
-            for(let i = 0; i < SelectedDate.tasks.length; i++){
+            for(let i = 0; i < selectedDate.tasks.length; i++){
                 //create task div
-                console.log(SelectedDate[i]);
+                //create task-title p
+                //create task-time p
+                //create complete-task button
+                const task = document.createElement("div");
+                task.className = "task";
+                const taskTitle = document.createElement("p");
+                taskTitle.className = "task-title";
+                taskTitle.innerHTML = selectedDate.tasks[i].title;
+                const taskTime = document.createElement("p");
+                taskTime.className = "task-time";
+                taskTime.innerHTML = selectedDate.tasks[i].time;
+                const completeTask = document.createElement("button");
+                completeTask.className = "complete-task";
+                completeTask.innerHTML = "complete task";
+                task.appendChild(taskTitle);
+                task.appendChild(taskTime);
+                task.appendChild(completeTask);
+                activeTasks.appendChild(task);
+
             }
         }
+    }
+
+    function printEvents(){
+        if(selectedDate == null || selectedDate.events.length === 0){
+            let activeTasks = document.querySelector(".active-events");
+            activeTasks.innerHTML = "no tasks";
+        }else {
+            let activeTasks = document.querySelector(".active-events");
+            activeTasks.innerHTML = "";
+            for(let i = 0; i < selectedDate.events.length; i++){
+                //create one-event div
+                //create event-title p
+                //create event-time p
+                const oneEvent = document.createElement("div");
+                oneEvent.className = "one-event";
+                const eventTitle = document.createElement("p");
+                eventTitle.className = "event-title";
+                eventTitle.innerHTML = selectedDate.events[i].title;
+                //not yet implemented time-stamp to backend
+                // const eventTime = document.createElement("p");
+                // eventTime.className = "event-time";
+                // eventTime.innerHTML = selectedDate.events[i].time;
+                oneEvent.appendChild(eventTitle);
+                //oneEvent.appendChild(eventTime);
+                activeTasks.appendChild(oneEvent);
+            }
+        }
+    }
+
+    function seeSelectedDate(){
+        console.log(JSON.stringify(selectedDate));
     }
 
 
@@ -79,8 +147,7 @@ function SelectedDay({SelectedDate}) {
                     <h4>time</h4>
                 </div>
                 <div className="active-events">
-                    <h4 className="event-title">go to show</h4>
-                    <h4 className="event-time">19:00</h4>
+                    
                 </div>
             </div>
             <div className="type-add-box">
@@ -99,18 +166,19 @@ function SelectedDay({SelectedDate}) {
                         <label htmlFor="addDescriptionId">description:</label>
                         <input type="text" name="event-description" id="addDescriptionId" />
                         <label htmlFor="addTimeId">time:</label>
-                        <input type="time" name="event-time" id="addTimeId" />
+                        <input type="time" name="event-time" id="addClockId" />
+                        <button className="taskOrEventAddBtn" onClick={addEventToCalendar}>add to calendar</button>
                     </div>
                     <div className="add-task">
                         <label htmlFor="addTitleId">title:</label>
                         <input type="text" name="task-title" id="addTitleId" />
                         <label htmlFor="addTimeId">time (minutes):</label>
                         <input type="number" name="task-time" id="addTimeId" />
+                        <button className="taskOrEventAddBtn" onClick={addTaskToCalendar}>add to calendar</button>
                     </div>
                 </div>
             </div>
-            <button>add to calendar</button>
-
+                <button type="button" onClick={seeSelectedDate}>see date</button>
         </div>
     );
 

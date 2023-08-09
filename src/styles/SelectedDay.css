@@ -74,6 +74,28 @@
     flex-flow: column nowrap;
 }
 
+#eventBtn{
+    background-color: rgb(241, 96, 12);
+    color: white;
+}
+
+#taskBtn{
+    background-color: black;
+    color: white;
+}
+
 .add-task{
     display: none;
 }
+
+.active-events{
+    display: flex;
+    flex-direction: column;
+}
+
+.one-event{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
