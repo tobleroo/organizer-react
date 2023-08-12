@@ -87,10 +87,12 @@ function SelectedDay({selectedDate}) {
             activeTasks.innerHTML = "";
             //loop trough selectedDate.tasks array
             for(let i = 0; i < selectedDate.tasks.length; i++){
-                //create task div
-                //create task-title p
-                //create task-time p
-                //create complete-task button
+                //create button to remove task
+                const removeTask = document.createElement("button");
+                removeTask.className = "remove-task";
+                removeTask.innerHTML = "remove task";
+                //create function to remove task from list
+                
                 const task = document.createElement("div");
                 task.className = "task";
                 const taskTitle = document.createElement("p");
@@ -102,6 +104,18 @@ function SelectedDay({selectedDate}) {
                 const completeTask = document.createElement("button");
                 completeTask.className = "complete-task";
                 completeTask.innerHTML = "complete task";
+                removeTask.addEventListener("click", function(){
+                    //loop through selected date tasks array
+                    for(let j = 0; j < selectedDate.tasks.length; j++){
+                        //remove task with the specific name
+                        if(selectedDate.tasks[j].title === selectedDate.tasks[i].title){
+                            selectedDate.tasks.splice(j, 1);
+                            setTasks([...tasks]);
+                            console.log("task removed");
+                        }
+                    }
+                });
+                task.appendChild(removeTask);
                 task.appendChild(taskTitle);
                 task.appendChild(taskTime);
                 task.appendChild(completeTask);
@@ -119,9 +133,25 @@ function SelectedDay({selectedDate}) {
             let activeTasks = document.querySelector(".active-events");
             activeTasks.innerHTML = "";
             for(let i = 0; i < selectedDate.events.length; i++){
-                //create one-event div
-                //create event-title p
-                //create event-time p
+
+                //add button to remove event
+                const removeEvent = document.createElement("button");
+                removeEvent.className = "remove-event";
+                removeEvent.innerHTML = "remove event";
+                //create function to remove event from list
+                removeEvent.addEventListener("click", function(){
+                    //loop through selected date events array
+                    for(let j = 0; j < selectedDate.events.length; j++){
+                        //remove event with the specific name
+                        if(selectedDate.events[j].title === selectedDate.events[i].title){
+                            selectedDate.events.splice(j, 1);
+                            setEvents([...events]);
+                            console.log("event removed");
+                        }
+                    }
+                });
+
+
                 const oneEvent = document.createElement("div");
                 oneEvent.className = "one-event";
                 const eventTitle = document.createElement("p");
@@ -131,6 +161,7 @@ function SelectedDay({selectedDate}) {
                 // const eventTime = document.createElement("p");
                 // eventTime.className = "event-time";
                 // eventTime.innerHTML = selectedDate.events[i].time;
+                oneEvent.appendChild(removeEvent);
                 oneEvent.appendChild(eventTitle);
                 //oneEvent.appendChild(eventTime);
                 activeTasks.appendChild(oneEvent);

@@ -13,6 +13,14 @@ export function getCalendar() {
     });
 };
 
+export async function saveCalendarToBackend(calendar) {
+    return await axios.post('https://localhost:7117/calendar/update', calendar, {
+        headers: {
+        Authorization: 'Bearer ' + getJwtToken(),
+        }
+    });
+}
+
 
 
 

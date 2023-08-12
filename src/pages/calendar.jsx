@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import {getCalendar} from "../Api/OrganizerCalendar";
+import {getCalendar, saveCalendarToBackend} from "../Api/OrganizerCalendar";
 import CalendarBox from "../components/calendarComponents/calendarBox";
 import SelectedDay from "../components/calendarComponents/SelectedDay";
 
@@ -48,9 +48,14 @@ function Calendar() {
         }
     };
 
-    function saveCalendarToBackend(){
+    async function saveCalendarToBackend(){
         //save calendar to backend
-        console.log(calendarData);
+        const response = await saveCalendarToBackend(calendarData);
+        if(response.status === 200){
+            console.log("calendar saved");
+        }else{
+            console.log("something went wrong");
+        }
     }
     
     return (
@@ -73,6 +78,7 @@ function Calendar() {
             <div className="save-calendar-box">
                 <button className="save-calendar" onClick={saveCalendarToBackend}>save calendar</button>
             </div>
+
             
         </div>
     );
