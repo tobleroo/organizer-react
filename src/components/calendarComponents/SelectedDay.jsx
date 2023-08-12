@@ -5,10 +5,22 @@ import "../../styles/SelectedDay.css";
 
 function SelectedDay({selectedDate}) {
 
+    const [tasks, setTasks] = useState([]);
+    const [events, setEvents] = useState([]);
+
     useEffect(() => {
         printTasks();
         printEvents();
-    }, [selectedDate]);
+        printSelectedDayDate();
+        if(selectedDate){
+            setTasks(selectedDate.tasks);
+            setEvents(selectedDate.events);
+        }
+    }, [selectedDate, tasks, events]);
+
+    //useeffect to rerender when tasks or events change
+    useEffect(() => {
+    }, [tasks, events]);
 
 
 
@@ -30,30 +42,37 @@ function SelectedDay({selectedDate}) {
     function addTaskToCalendar(){
         //create new task object
         let task = {
-            title: document.querySelector("#addTitleId").value,
+            title: document.querySelector("#addTaskTitleId").value,
             timeToDoMinutes: document.querySelector("#addTimeId").value,
             isComplete: false
         };
 
         //add task to selectedDate.tasks array
         selectedDate.tasks.push(task);
-        
+        setTasks([...tasks, task]);
+        //console.log("use state tasks -> " +tasks);
+        console.log("selectedDate.tasks -> " + printAllTasks());
     }
+
+    function printAllTasks(){
+        //console log all tasks in selectedDate.tasks array
+        for(let i = 0; i < selectedDate.tasks.length; i++){
+            console.log(selectedDate.tasks[i]);
+        }
+    }
+
 
     function addEventToCalendar(){
         //create new event object
         let event = {
-            title: document.querySelector("#addTitleId").value,
+            title: document.querySelector("#addEventTitleId").value,
             description: "none",
             time: document.querySelector("#addClockId").value,
         };
 
         //add event to selectedDate.events array
         selectedDate.events.push(event);
-    }
-
-    function saveCalendarToServer(){
-
+        setEvents([...events, event]);
     }
 
     function printTasks(){
@@ -123,11 +142,20 @@ function SelectedDay({selectedDate}) {
         console.log(JSON.stringify(selectedDate));
     }
 
+    function printSelectedDayDate(){
+        const dateH4 = document.querySelector(".dateH4");
+        if(selectedDate != null){
+            dateH4.innerHTML = selectedDate.date;
+        } else {
+            dateH4.innerHTML = "no date selected";
+        }
+    }
+
 
     return (
         <div className="selected-date-box">
             <div className="date-info-box">
-                <h4>selected date</h4>
+                <h4 className="dateH4"></h4>
             </div>
             <div className="task-box">
                 <div className="details-box">
@@ -162,7 +190,7 @@ function SelectedDay({selectedDate}) {
                 <div className="selected-type-box">
                     <div className="add-event">
                         <label htmlFor="addTitleId">title:</label>
-                        <input type="text" name="event-title" id="addTitleId" />
+                        <input type="text" name="event-title" id="addEventTitleId" />
                         <label htmlFor="addDescriptionId">description:</label>
                         <input type="text" name="event-description" id="addDescriptionId" />
                         <label htmlFor="addTimeId">time:</label>
@@ -171,14 +199,13 @@ function SelectedDay({selectedDate}) {
                     </div>
                     <div className="add-task">
                         <label htmlFor="addTitleId">title:</label>
-                        <input type="text" name="task-title" id="addTitleId" />
+                        <input type="text" name="task-title" id="addTaskTitleId" />
                         <label htmlFor="addTimeId">time (minutes):</label>
                         <input type="number" name="task-time" id="addTimeId" />
                         <button className="taskOrEventAddBtn" onClick={addTaskToCalendar}>add to calendar</button>
                     </div>
                 </div>
             </div>
-                <button type="button" onClick={seeSelectedDate}>see date</button>
         </div>
     );
 

@@ -13,7 +13,7 @@ import "../styles/Calendar.css";
 function Calendar() {
 
     const [calendarData, setCalendarData] = useState(null);
-    const [selectedDate, setSelectedDate] = useState();
+    const [selectedDate, setSelectedDate] = useState(null);
 
     useEffect( () => {
         async function fetchData() {
@@ -25,13 +25,9 @@ function Calendar() {
 
     useEffect(() => {
         if(selectedDate != null){
-            console.log(JSON.stringify(selectedDate));
+            console.log(selectedDate.date);
         }
     }, [calendarData,selectedDate]);
-
-    // selectedDate.addEventListener("change", () => {
-    //     setSelectedDate(selectedDate);
-    // });
 
     const getCalendarData = async () => {
         try {
@@ -51,6 +47,11 @@ function Calendar() {
             }
         }
     };
+
+    function saveCalendarToBackend(){
+        //save calendar to backend
+        console.log(calendarData);
+    }
     
     return (
         <div className="calendar-page">
@@ -68,6 +69,9 @@ function Calendar() {
                     <CalendarBox calendarData={calendarData}
                     setSelectedDate={setSelectedDate}/>
                 </div>
+            </div>
+            <div className="save-calendar-box">
+                <button className="save-calendar" onClick={saveCalendarToBackend}>save calendar</button>
             </div>
             
         </div>

@@ -180,8 +180,6 @@ import "../../styles/CalendarBoxStyle.css";
 
 function CalendarBox( {calendarData, setSelectedDate}) {
 
-
-    
     const [currentMonthSelected, setCurrentMonthSelected] = useState("");
     const [currentYearSelected, setCurrentYearSelected] = useState("");
     const [currentMonthName, setCurrentMonthName] = useState(getMonthName(getCurrentMonth()));
@@ -194,7 +192,6 @@ function CalendarBox( {calendarData, setSelectedDate}) {
         // this is demo for fetching data from backend
 
         createCalendar();
-        
     }, []);
 
     useEffect(() => {
@@ -291,6 +288,37 @@ function CalendarBox( {calendarData, setSelectedDate}) {
         }
     }
 
+    function getMonthNumber(monthName){
+        switch(monthName){
+            case "January":
+                return "01";
+            case "February":
+                return "02";
+            case "March":
+                return "03";
+            case "April":
+                return "04";
+            case "May":
+                return "05";
+            case "June":
+                return "06";
+            case "July":
+                return "07";
+            case "August":
+                return "08";
+            case "September":
+                return "09";
+            case "October":
+                return "10";
+            case "November":
+                return "11";
+            case "December":
+                return "12";
+            default:
+                return "error";
+        }
+    }
+
     function selectedDateToCard(chosenDate){
         setSelectedDate(chosenDate);
     }
@@ -320,11 +348,27 @@ function CalendarBox( {calendarData, setSelectedDate}) {
                     calendarbox.appendChild(date);
                 }
             }
+            const dateNumbers = document.querySelectorAll('.dateNumber');
+
+            for (const dateNumber of dateNumbers) {
+            dateNumber.addEventListener('click', (event) => {
+                const dateNumberText = event.target.innerText;
+                const fullDate = currentYearSelected+"-"+getMonthNumber(currentMonthName)+"-"+dateNumberText;
+                changeSelectedDate(fullDate);
+            });
+            }
 
         }
     }
 
-
+    function changeSelectedDate(dateWanted){
+        //run through the calendar data and find the date wanted
+        for(let i = 0; i < calendarData.length; i++){
+            if(calendarData[i].date === dateWanted){
+                selectedDateToCard(calendarData[i]);
+            }
+        }
+    }
 
     return (
         <div className="calendarBox">
