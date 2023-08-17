@@ -6,13 +6,13 @@ import { useState, useEffect } from "react";
 import "../styles/Navbar.css"
 import { isTokenExpired } from "../Api/OrganizerAuth";
 
-const Navbar = () => {
+const Navbar = ({setUserLoggedIn}) => {
 
   function logout() {
+    setUserLoggedIn(false);
     localStorage.removeItem("token");
     window.location.href = "/";
   }
-
   
 
   return (

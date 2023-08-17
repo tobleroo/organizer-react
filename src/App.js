@@ -1,5 +1,7 @@
 
 import './App.css';
+import { useState, useEffect } from 'react';
+import { isTokenExpired, getJwtToken } from './Api/OrganizerAuth';
 
 import React from "react";
 import Navbar from "./components/Navbar";
@@ -10,13 +12,24 @@ import Register from "./pages/register";
 import Calendar from './pages/calendar';
 
 function App() {
+
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
+
+  useEffect(() => {
+    
+    if (isTokenExpired()) {
+      setUserLoggedIn(true);
+    }
+  }, [userLoggedIn]);
+
+
   return (
     <div className="App">
       <Router>
-          <Navbar />
+          <Navbar setUserLoggedIn={setUserLoggedIn} />
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login setUserLoggedIn={setUserLoggedIn} />} />
             <Route path="/register" element={<Register />} />
             <Route path="/calendar" element={<Calendar />} />
 

@@ -5,7 +5,7 @@ import {isTokenExpired} from "../Api/OrganizerAuth";
 
 import "../styles/login.css";
 
-const Login = () => {
+const Login = ({setUserLoggedIn}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [token, setToken] = useState(null);
@@ -34,6 +34,7 @@ const Login = () => {
       if (response.status === 200) {
         console.log("success, jwt saved to localstorage");
         localStorage.setItem("token", response.data); // Assuming the token is returned as 'token' property in the response
+        setUserLoggedIn(true);
         navigate("/calendar");
         
       } else {
