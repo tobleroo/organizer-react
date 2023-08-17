@@ -3,181 +3,6 @@ import { useState, useEffect } from "react";
 
 import "../../styles/CalendarBoxStyle.css";
 
-// function generateDummyData() {
-//     return {
-//         "data": [
-//             {
-//                 "date": "2023-07-31",
-//                 "dayOfWeek": "Monday",
-//                 "tasks": [],
-//                 "events": []
-//             },
-//             {
-//                 "date": "2023-08-01",
-//                 "dayOfWeek": "Tuesday",
-//                 "tasks": [],
-//                 "events": []
-//             },
-//             {
-//                 "date": "2023-08-02",
-//                 "dayOfWeek": "Wednesday",
-//                 "tasks": [],
-//                 "events": []
-//             },
-//             {
-//                 "date": "2023-08-03",
-//                 "dayOfWeek": "Thursday",
-//                 "tasks": [],
-//                 "events": []
-//             },
-//             {
-//                 "date": "2023-08-04",
-//                 "dayOfWeek": "Friday",
-//                 "tasks": [],
-//                 "events": []
-//             },
-//             {
-//                 "date": "2023-08-05",
-//                 "dayOfWeek": "Saturday",
-//                 "tasks": [],
-//                 "events": []
-//             },
-//             {
-//                 "date": "2023-08-06",
-//                 "dayOfWeek": "Sunday",
-//                 "tasks": [],
-//                 "events": []
-//             },
-//             {
-//                 "date": "2023-08-07",
-//                 "dayOfWeek": "Monday",
-//                 "Tasks": [
-//                     {
-//                         "_id": 0,
-//                         "Title": "clean house",
-//                         "IsCompleted": false,
-//                         "timeToDoMinutes": 30
-//                     },
-//                     {
-//                         "_id": 0,
-//                         "Title": "clean vacuum",
-//                         "IsCompleted": false,
-//                         "timeToDoMinutes": 20
-//                     }
-//                 ],
-//                 "Events": [
-//                     {
-//                         "_id": 0,
-//                         "Title": "see the show",
-//                         "Description": "once upon a time a show"
-//                     },
-//                     {
-//                         "_id": 0,
-//                         "Title": "go to the party",
-//                         "Description": "once upon a time a show"
-//                     }
-//                 ]
-//             },
-//             {
-//                 "date": "2023-08-08",
-//                 "dayOfWeek": "Tuesday",
-//                 "tasks": [],
-//                 "events": []
-//             },
-//             {
-//                 "date": "2023-08-09",
-//                 "dayOfWeek": "Wednesday",
-//                 "tasks": [],
-//                 "events": []
-//             },
-//             {
-//                 "date": "2023-08-10",
-//                 "dayOfWeek": "Thursday",
-//                 "tasks": [],
-//                 "events": []
-//             },
-//             {
-//                 "date": "2023-08-11",
-//                 "dayOfWeek": "Friday",
-//                 "tasks": [],
-//                 "events": []
-//             },
-//             {
-//                 "date": "2023-08-12",
-//                 "dayOfWeek": "Saturday",
-//                 "tasks": [],
-//                 "events": []
-//             },
-//             {
-//                 "date": "2023-08-13",
-//                 "dayOfWeek": "Sunday",
-//                 "tasks": [],
-//                 "events": []
-//             },
-//             {
-//                 "date": "2023-08-14",
-//                 "dayOfWeek": "Monday",
-//                 "tasks": [],
-//                 "events": []
-//             },
-//             {
-//                 "date": "2023-08-15",
-//                 "dayOfWeek": "Tuesday",
-//                 "tasks": [],
-//                 "events": []
-//             },
-//             {
-//                 "date": "2023-08-16",
-//                 "dayOfWeek": "Wednesday",
-//                 "tasks": [],
-//                 "events": []
-//             },
-//             {
-//                 "date": "2023-08-17",
-//                 "dayOfWeek": "Thursday",
-//                 "tasks": [],
-//                 "events": []
-//             },
-//             {
-//                 "date": "2023-08-18",
-//                 "dayOfWeek": "Friday",
-//                 "tasks": [],
-//                 "events": []
-//             },
-//             {
-//                 "date": "2023-09-14",
-//                 "dayOfWeek": "Monday",
-//                 "tasks": [],
-//                 "events": []
-//             },
-//             {
-//                 "date": "2023-09-15",
-//                 "dayOfWeek": "Tuesday",
-//                 "tasks": [],
-//                 "events": []
-//             },
-//             {
-//                 "date": "2023-09-16",
-//                 "dayOfWeek": "Wednesday",
-//                 "tasks": [],
-//                 "events": []
-//             },
-//             {
-//                 "date": "2023-09-17",
-//                 "dayOfWeek": "Thursday",
-//                 "tasks": [],
-//                 "events": []
-//             },
-//             {
-//                 "date": "2023-09-18",
-//                 "dayOfWeek": "Friday",
-//                 "tasks": [],
-//                 "events": []
-//             }
-//         ]
-//     };
-// }
-
 function CalendarBox( {calendarData, setSelectedDate}) {
 
     const [currentMonthSelected, setCurrentMonthSelected] = useState("");
@@ -209,16 +34,19 @@ function CalendarBox( {calendarData, setSelectedDate}) {
         }
 
     }
+    
     function getCurrentMonth(){
         const today = new Date();
         const todayMonthString = today.toISOString().slice(5, 7);
         return todayMonthString;
     }
+
     function getCurrentYear(){
         const today = new Date();
         const todayMonthString = today.toISOString().slice(0, 4);
         return todayMonthString;
     }
+
     function CheckCurrentMonth(dateToCheck, currentMonth){
         const inputMonth = dateToCheck.substring(5,7);
         
@@ -228,6 +56,7 @@ function CalendarBox( {calendarData, setSelectedDate}) {
             return false;
         }
     }
+
     function convertNumberToMonthValue(monthNumber){
         
         if(monthNumber >= 10){
@@ -235,7 +64,8 @@ function CalendarBox( {calendarData, setSelectedDate}) {
         }else{
             return "0" + monthNumber.toString();
         }
-    }       
+    }
+
     function changeMonth(changeValue){
 
         if(currentMonthSelected === "12"){
@@ -252,11 +82,13 @@ function CalendarBox( {calendarData, setSelectedDate}) {
             setCurrentMonthName(getMonthName(convertNumberToMonthValue(newMonth)))
         }
     }
+
     function changeYear(changeValue){
         const yearInt = parseInt(currentYearSelected);
         const newYear = yearInt + changeValue;
         setCurrentYearSelected(newYear.toString);
     }
+
     function getMonthName(monthNumber){
         switch(monthNumber){
             case "01":

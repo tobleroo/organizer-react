@@ -42,6 +42,7 @@ function SelectedDay({selectedDate}) {
     function addTaskToCalendar(){
         //create new task object
         let task = {
+            id: Math.floor(Math.random() * 1000000),
             title: document.querySelector("#addTaskTitleId").value,
             timeToDoMinutes: document.querySelector("#addTimeId").value,
             isComplete: false
@@ -51,23 +52,16 @@ function SelectedDay({selectedDate}) {
         selectedDate.tasks.push(task);
         setTasks([...tasks, task]);
         //console.log("use state tasks -> " +tasks);
-        console.log("selectedDate.tasks -> " + printAllTasks());
-    }
-
-    function printAllTasks(){
-        //console log all tasks in selectedDate.tasks array
-        for(let i = 0; i < selectedDate.tasks.length; i++){
-            console.log(selectedDate.tasks[i]);
-        }
     }
 
 
     function addEventToCalendar(){
         //create new event object
         let event = {
+            id: Math.floor(Math.random() * 1000000),
             title: document.querySelector("#addEventTitleId").value,
             description: "none",
-            time: document.querySelector("#addClockId").value,
+            eventTime: document.querySelector("#addClockId").value.toString(),
         };
 
         //add event to selectedDate.events array
@@ -100,10 +94,10 @@ function SelectedDay({selectedDate}) {
                 taskTitle.innerHTML = selectedDate.tasks[i].title;
                 const taskTime = document.createElement("p");
                 taskTime.className = "task-time";
-                taskTime.innerHTML = selectedDate.tasks[i].time;
-                const completeTask = document.createElement("button");
+                taskTime.innerHTML = selectedDate.tasks[i].timeToDoMinutes;
+                const completeTask = document.createElement("p");
                 completeTask.className = "complete-task";
-                completeTask.innerHTML = "complete task";
+                completeTask.innerHTML = selectedDate.tasks[i].isCompleted ? "task completed" : "complete task";
                 removeTask.addEventListener("click", function(){
                     //loop through selected date tasks array
                     for(let j = 0; j < selectedDate.tasks.length; j++){
@@ -111,7 +105,26 @@ function SelectedDay({selectedDate}) {
                         if(selectedDate.tasks[j].title === selectedDate.tasks[i].title){
                             selectedDate.tasks.splice(j, 1);
                             setTasks([...tasks]);
-                            console.log("task removed");
+                        }
+                    }
+                });
+
+                completeTask.addEventListener("click", function(){
+                    //get specific task and set isComplete to true
+                    for(let j = 0; j < selectedDate.tasks.length; j++){
+                        if(selectedDate.tasks[j].title === selectedDate.tasks[i].title){
+                            if(selectedDate.tasks[j].isCompleted === true){
+                                selectedDate.tasks[j].isCompleted = false;
+                                //change color of task div to white
+                                task.style.backgroundColor = "red";
+                                completeTask.innerHTML = "complete task";
+                            } else{
+                                selectedDate.tasks[j].isCompleted = true;
+                                completeTask.innerHTML = "task completed";
+                                //change color of task div to green
+                                
+                            }
+                            setTasks([...tasks]);
                         }
                     }
                 });
@@ -146,7 +159,6 @@ function SelectedDay({selectedDate}) {
                         if(selectedDate.events[j].title === selectedDate.events[i].title){
                             selectedDate.events.splice(j, 1);
                             setEvents([...events]);
-                            console.log("event removed");
                         }
                     }
                 });

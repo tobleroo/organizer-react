@@ -48,7 +48,7 @@ function Calendar() {
         }
     };
 
-    async function saveCalendarToBackend(){
+    async function saveCalendar(){
         //save calendar to backend
         const response = await saveCalendarToBackend(calendarData);
         if(response.status === 200){
@@ -56,6 +56,8 @@ function Calendar() {
         }else{
             console.log("something went wrong");
         }
+
+        //console.log(calendarData);
     }
     
     return (
@@ -76,7 +78,7 @@ function Calendar() {
                 </div>
             </div>
             <div className="save-calendar-box">
-                <button className="save-calendar" onClick={saveCalendarToBackend}>save calendar</button>
+                <button className="save-calendar" onClick={saveCalendar}>save calendar</button>
             </div>
 
             

@@ -24,22 +24,6 @@ export async function saveCalendarToBackend(calendar) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //will be used later when implemented httponly cookies safely
 // export function getCalendar() {
 //     return axios.get('https://localhost:7117/calendar', {

@@ -19,7 +19,6 @@ export const isTokenExpired = () => {
     
   const token = localStorage.getItem("token");
   if (!token) {
-    console.log("Token not found");
     // Token not found, consider it as expired
     return false;
   }
@@ -35,7 +34,6 @@ export const isTokenExpired = () => {
     // Compare the token's expiration time with the calculated expiration time
     return decodedToken.exp < expirationTime;
   } catch (error) {
-    console.log("Token invalid");
     // Token is invalid or malformed, consider it as expired
     return false;
   }
