@@ -24,9 +24,7 @@ function Calendar() {
     }, []);
 
     useEffect(() => {
-        if(selectedDate != null){
-            console.log(selectedDate.date);
-        }
+        
     }, [calendarData,selectedDate]);
 
     const getCalendarData = async () => {
@@ -69,7 +67,7 @@ function Calendar() {
 
             <div className="all-calendar">
                 <div className="selected-date-calendar">
-                    <SelectedDay selectedDate={selectedDate}/>
+                    <SelectedDay selectedDate={selectedDate} setSelectedDate={setSelectedDate}/>
                 </div>
 
                 <div className="calendar">

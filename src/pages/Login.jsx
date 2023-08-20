@@ -61,11 +61,6 @@ const Login = ({setUserLoggedIn}) => {
   
   };
 
-  const handleLogout = () => {
-    console.log("logout");
-  };
-
-
   return (
     <div className="login">
       <div className="form-box">

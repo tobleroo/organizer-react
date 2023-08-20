@@ -24,7 +24,6 @@ export const isTokenExpired = () => {
   }
 
   try {
-    console.log("Token found");
     const decodedToken = jwtDecode(token);
     const currentTime = Date.now() / 1000; // Convert milliseconds to seconds
 

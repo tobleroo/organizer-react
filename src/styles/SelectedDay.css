@@ -5,7 +5,7 @@
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
-    
+    max-width: 30rem;
 }
 
 .task-box{
@@ -48,7 +48,17 @@
 .type-add-box{
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
+}
+
+.type-add-box button{
+    width: 49%;
+    margin: 0;
+    border-radius: 5px 0 0 5px;
+}
+
+.type-add-box button:hover{
+    cursor: pointer;
 }
 
 .type-Btn{

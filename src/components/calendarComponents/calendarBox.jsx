@@ -15,7 +15,7 @@ function CalendarBox( {calendarData, setSelectedDate}) {
         setCurrentYearSelected(getCurrentYear());
         setCurrentMonthName(getMonthName(getCurrentMonth()));
         // this is demo for fetching data from backend
-
+        //seeCalendar();
         createCalendar();
     }, []);
 
@@ -33,6 +33,10 @@ function CalendarBox( {calendarData, setSelectedDate}) {
             return false;
         }
 
+    }
+
+    function seeCalendar(){
+        console.log(calendarData);
     }
     
     function getCurrentMonth(){
@@ -68,7 +72,7 @@ function CalendarBox( {calendarData, setSelectedDate}) {
 
     function changeMonth(changeValue){
 
-        if(currentMonthSelected === "12"){
+        if(currentMonthSelected === "12" && changeValue === 1){
             setCurrentMonthSelected("01");
             changeYear(1)
         }else if(currentMonthSelected === "01" && changeValue === -1){
@@ -158,6 +162,8 @@ function CalendarBox( {calendarData, setSelectedDate}) {
     //big algorithm to create calendar
     function createCalendar(){
 
+        var counter = 1;
+
         if(calendarData === null){
             document.getElementById('calendarBoxId').innerHTML = "loading data";
         }else{
@@ -170,14 +176,26 @@ function CalendarBox( {calendarData, setSelectedDate}) {
             for(let i = 0; i < calendarData.length; i++){
 
                 if(CheckCurrentMonth(calendarData[i].date, currentMonthSelected)){
-                    const date = document.createElement('p');
-                    date.className = "dateNumber";
-                    date.innerText = calendarData[i].date.substring(8,10);
-                    if(compareToTodaysDate(calendarData[i].date)){
-                        date.style.backgroundColor = "red";
-                        selectedDateToCard(calendarData[i]);
+                    //parse string date to int
+                    const todayDateInt = parseInt(calendarData[i].date.substring(8,10));
+
+                    if(counter <= todayDateInt){
+                        const date = document.createElement('p');
+                        date.className = "dateNumber";
+                        date.innerText = calendarData[i].date.substring(8,10);
+                        if(compareToTodaysDate(calendarData[i].date)){
+                            date.style.backgroundColor = "red";
+                            selectedDateToCard(calendarData[i]);
+                        }
+    
+                        if(calendarData[i].tasks.length > 0 || calendarData[i].events.length > 0){
+                            date.style.color = "green";
+                        }
+                        
+                        calendarbox.appendChild(date);
+                        counter++;
                     }
-                    calendarbox.appendChild(date);
+
                 }
             }
             const dateNumbers = document.querySelectorAll('.dateNumber');
@@ -191,6 +209,7 @@ function CalendarBox( {calendarData, setSelectedDate}) {
             }
 
         }
+        counter = 1;
     }
 
     function changeSelectedDate(dateWanted){

@@ -1,9 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
+import {RemoveTaskBtn } from "./btns.jsx";
+
 import "../../styles/SelectedDay.css";
 
-function SelectedDay({selectedDate}) {
+function SelectedDay({selectedDate, setSelectedDate}) {
 
     const [tasks, setTasks] = useState([]);
     const [events, setEvents] = useState([]);
@@ -69,74 +71,53 @@ function SelectedDay({selectedDate}) {
         setEvents([...events, event]);
     }
 
-    function printTasks(){
-
-        if(selectedDate == null || selectedDate.tasks.length === 0){
-            //query for actiove-tasks div
-            let activeTasks = document.querySelector(".active-tasks");
-            activeTasks.innerHTML = "no tasks";
-        } else {
-            //query for actiove-tasks div
-            let activeTasks = document.querySelector(".active-tasks");
-            activeTasks.innerHTML = "";
-            //loop trough selectedDate.tasks array
-            for(let i = 0; i < selectedDate.tasks.length; i++){
-                //create button to remove task
-                const removeTask = document.createElement("button");
-                removeTask.className = "remove-task";
-                removeTask.innerHTML = "remove task";
-                //create function to remove task from list
-                
-                const task = document.createElement("div");
-                task.className = "task";
-                const taskTitle = document.createElement("p");
-                taskTitle.className = "task-title";
-                taskTitle.innerHTML = selectedDate.tasks[i].title;
-                const taskTime = document.createElement("p");
-                taskTime.className = "task-time";
-                taskTime.innerHTML = selectedDate.tasks[i].timeToDoMinutes;
-                const completeTask = document.createElement("p");
-                completeTask.className = "complete-task";
-                completeTask.innerHTML = selectedDate.tasks[i].isCompleted ? "task completed" : "complete task";
-                removeTask.addEventListener("click", function(){
-                    //loop through selected date tasks array
-                    for(let j = 0; j < selectedDate.tasks.length; j++){
-                        //remove task with the specific name
-                        if(selectedDate.tasks[j].title === selectedDate.tasks[i].title){
-                            selectedDate.tasks.splice(j, 1);
-                            setTasks([...tasks]);
-                        }
-                    }
-                });
-
-                completeTask.addEventListener("click", function(){
-                    //get specific task and set isComplete to true
-                    for(let j = 0; j < selectedDate.tasks.length; j++){
-                        if(selectedDate.tasks[j].title === selectedDate.tasks[i].title){
-                            if(selectedDate.tasks[j].isCompleted === true){
-                                selectedDate.tasks[j].isCompleted = false;
-                                //change color of task div to white
-                                task.style.backgroundColor = "red";
-                                completeTask.innerHTML = "complete task";
-                            } else{
-                                selectedDate.tasks[j].isCompleted = true;
-                                completeTask.innerHTML = "task completed";
-                                //change color of task div to green
-                                
-                            }
-                            setTasks([...tasks]);
-                        }
-                    }
-                });
-                task.appendChild(removeTask);
-                task.appendChild(taskTitle);
-                task.appendChild(taskTime);
-                task.appendChild(completeTask);
-                activeTasks.appendChild(task);
-
+    const handleRemoveTask = (taskTitle) => {
+        //remove task from selectedDate.tasks array
+        for(let i = 0; i < selectedDate.tasks.length; i++){
+            if(selectedDate.tasks[i].title === taskTitle){
+                selectedDate.tasks.splice(i, 1);
+                setTasks([...tasks]);
             }
         }
-    }
+    };
+
+    const handleCompleteTask = (taskTitle) => {
+        //loop through selectedDate.tasks array
+        
+        //update the selected task value to completed
+        for(let i = 0; i < selectedDate.tasks.length; i++){
+            if(selectedDate.tasks[i].title === taskTitle){
+                selectedDate.tasks[i].isComplete = !selectedDate.tasks[i].isComplete;
+            }
+        }
+
+        //create new tasks array with updated task
+        let updatedTasks = [];
+        for(let i = 0; i < selectedDate.tasks.length; i++){
+            updatedTasks.push(selectedDate.tasks[i]);
+        }
+
+
+        // Update the tasks state with the new tasks array
+        setTasks(updatedTasks);
+    };
+
+    function printTasks() {
+        if (!selectedDate || selectedDate.tasks.length === 0) {
+          return <p className="active-tasks">no tasks</p>;
+        } else {
+          return selectedDate.tasks.map((task, i) => (
+            <RemoveTaskBtn
+              key={i}
+              taskTitle={task.title}
+              taskTime={task.timeToDoMinutes}
+              isCompleted={task.isCompleted}
+              onRemoveClick={() => handleRemoveTask(task.title)}
+              onCompleteClick={() => handleCompleteTask(task.title)}
+            />
+          ));
+        }
+      }
 
     function printEvents(){
         if(selectedDate == null || selectedDate.events.length === 0){
@@ -207,9 +188,7 @@ function SelectedDay({selectedDate}) {
                     <h4>completed</h4>
                 </div>
                 <div className="active-tasks">
-                    {/* <h4 className="task-title">clean house</h4>
-                    <p className="task-time">20 minutes</p>
-                    <button>complete task</button> */}
+                    {printTasks()}
                 </div>
             </div>
             <div className="event-box">
