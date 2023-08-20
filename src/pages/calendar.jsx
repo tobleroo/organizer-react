@@ -78,8 +78,6 @@ function Calendar() {
             <div className="save-calendar-box">
                 <button className="save-calendar" onClick={saveCalendar}>save calendar</button>
             </div>
-
-            
         </div>
     );
 }

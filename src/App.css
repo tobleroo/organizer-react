@@ -2,6 +2,7 @@
 .App {
   display: flex;
   flex-direction: row;
-  background-color: wheat;
+  background-color: rgb(35, 34, 56);
   height: 100vh;
+  color: white;
 }

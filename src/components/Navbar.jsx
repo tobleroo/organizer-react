@@ -17,7 +17,7 @@ const Navbar = ({setUserLoggedIn}) => {
 
   return (
     <nav>
-      <h4>logo here</h4>
+      <h4>Organizer</h4>
       <div className="link-box">
         <Link to="/">Home</Link>
         
@@ -25,7 +25,7 @@ const Navbar = ({setUserLoggedIn}) => {
         {isTokenExpired() ? (
             <>
               <Link to="/calendar">Calendar</Link>
-              <button type="button" onClick={logout}>logout</button>
+              <button type="button" id="logoutBtn" onClick={logout}>logout</button>
             </>
           ) : (
             <>

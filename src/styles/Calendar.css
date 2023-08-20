@@ -3,9 +3,13 @@
 .calendar-page{
     display: flex;
     flex-flow: column nowrap;
+    align-items: center;
+    width: 80%;
 }
 
 .all-calendar{
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    width: 100%;
 }

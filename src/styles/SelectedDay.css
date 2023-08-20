@@ -1,16 +1,17 @@
 
 .selected-date-box{
-    background-color: rgb(55, 160, 160);
+    background-color: rgba(41, 103, 122, 0.226);
     color: white;
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
-    max-width: 30rem;
+    width: 25rem;
 }
 
-.task-box{
-    border: solid black 1px;
+.task-box, .event-box{
+    border-bottom: solid 2px black;
     padding: 10px 0;
+    margin-bottom: 1rem;
 }
 
 .date-info-box{
@@ -22,6 +23,7 @@
 
 .details-box h4{
     padding: 0 3rem;
+    font-size: larger;
 }
 
 .details-box, .active-events{
@@ -34,13 +36,11 @@
 .active-tasks, .active-events > h4,
 .active-tasks > p,
 .active-tasks > button {
-  border: solid black 1px;
   padding: 0;
   margin: 0;
 }
 
 .active-tasks, .active-events{
-    border: solid blue 2px;
     padding: 0;
     margin: 0;
 }
@@ -89,7 +89,7 @@
 }
 
 #taskBtn{
-    background-color: black;
+    background-color: grey;
     color: white;
 }
 
@@ -100,6 +100,7 @@
 .active-events{
     display: flex;
     flex-direction: column;
+    margin-bottom: 2rem;
 }
 
 .active-tasks{

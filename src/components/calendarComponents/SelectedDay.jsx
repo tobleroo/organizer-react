@@ -32,11 +32,11 @@ function SelectedDay({selectedDate, setSelectedDate}) {
             document.querySelector(".add-event").style.display = "block";
             document.querySelector(".add-task").style.display = "none";
             document.querySelector("#eventBtn").style.backgroundColor = "rgb(241, 96, 12)";
-            document.querySelector("#taskBtn").style.backgroundColor = "black";
+            document.querySelector("#taskBtn").style.backgroundColor = "grey";
         } else if(inputWanted === "task"){
             document.querySelector(".add-event").style.display = "none";
             document.querySelector(".add-task").style.display = "block";
-            document.querySelector("#eventBtn").style.backgroundColor = "black";
+            document.querySelector("#eventBtn").style.backgroundColor = "grey";
             document.querySelector("#taskBtn").style.backgroundColor = "rgb(241, 96, 12)";
         }
     }
@@ -183,9 +183,7 @@ function SelectedDay({selectedDate, setSelectedDate}) {
             </div>
             <div className="task-box">
                 <div className="details-box">
-                    <h4>name</h4>
-                    <h4>time</h4>
-                    <h4>completed</h4>
+                    <h4>tasks</h4>
                 </div>
                 <div className="active-tasks">
                     {printTasks()}
@@ -193,8 +191,7 @@ function SelectedDay({selectedDate, setSelectedDate}) {
             </div>
             <div className="event-box">
                 <div className="details-box">
-                    <h4>name</h4>
-                    <h4>time</h4>
+                    <h4>Events</h4>
                 </div>
                 <div className="active-events">
                     

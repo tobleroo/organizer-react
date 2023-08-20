@@ -184,7 +184,7 @@ function CalendarBox( {calendarData, setSelectedDate}) {
                         date.className = "dateNumber";
                         date.innerText = calendarData[i].date.substring(8,10);
                         if(compareToTodaysDate(calendarData[i].date)){
-                            date.style.backgroundColor = "red";
+                            date.style.backgroundColor = "#119cbe";
                             selectedDateToCard(calendarData[i]);
                         }
     
