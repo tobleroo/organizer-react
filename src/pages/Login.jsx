@@ -32,7 +32,6 @@ const Login = ({setUserLoggedIn}) => {
       console.log("token -> " + response.data);
   
       if (response.status === 200) {
-        console.log("success, jwt saved to localstorage");
         localStorage.setItem("token", response.data); // Assuming the token is returned as 'token' property in the response
         setUserLoggedIn(true);
         navigate("/calendar");
