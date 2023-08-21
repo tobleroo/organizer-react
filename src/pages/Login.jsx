@@ -17,7 +17,7 @@ const Login = ({setUserLoggedIn}) => {
     console.log("login");
     try {
       const response = await axios.post(
-        "https://localhost:7117/api/Auth/login",
+        "https://organizerapi.azurewebsites.net/auth/login",
         {
           username,
           password,
