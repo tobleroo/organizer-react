@@ -10,6 +10,7 @@ import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import Register from "./pages/register";
 import Calendar from './pages/calendar';
+import Todo from './pages/todo';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
             <Route path="/login" element={<Login setUserLoggedIn={setUserLoggedIn} />} />
             <Route path="/register" element={<Register />} />
             <Route path="/calendar" element={<Calendar />} />
+            <Route path="/todo" element={<Todo />} />
 
           </Routes>
       </Router>
